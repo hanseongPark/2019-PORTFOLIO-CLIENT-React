@@ -121,7 +121,6 @@ export default class WorkoutGraph extends React.Component {
                             <h3 className="text-right">Volume Chart</h3>
                         </Col>
                         <Col md={4} xs={4}>
-                       
                             <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                                 <DropdownToggle caret outline color="secondary">
                                 {this.state.target}

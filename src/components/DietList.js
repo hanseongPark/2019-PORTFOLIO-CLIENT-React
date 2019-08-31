@@ -13,7 +13,7 @@ export default class DietList extends React.Component {
     }
 
     componentDidUpdate(prevProps){
-        if(this.props.userInfo!=prevProps.userInfo){
+        if(this.props.userInfo!==prevProps.userInfo){
             axios.post('/user/dietmanage/time', {
                 time: this.state.time,
                 date: this.props.date

@@ -65,7 +65,7 @@ export default class DietChart extends React.Component {
                         <h3 className="h2"><small className="small">Calorie  </small>{calorie}<small className="small">/{this.state.goalCalorie}kcal</small></h3>
                     </Col>
                     <Col md={12}>
-                        <Progress animated color="success" value={calorie} max={this.state.goalCalorie}></Progress>
+                        <Progress animated color="success" value={calorie} max={this.state.goalCalorie}>{calorie} of {this.state.goalCalorie}</Progress>
                     </Col>
                 </Row>
                 <Row>
@@ -73,7 +73,7 @@ export default class DietChart extends React.Component {
                         <div><h3 className="h2"><small className="small">Carb   </small>{carb}<small className="small">/{this.state.goalCarb}g</small></h3></div>
                     </Col>
                     <Col md={12}>
-                        <Progress animated color= "danger" value={carb} max={this.state.goalCarb}></Progress>
+                        <Progress animated color= "danger" value={carb} max={this.state.goalCarb}>{carb} of {this.state.goalCarb}</Progress>
                     </Col>
                 </Row>
                 <Row>
@@ -81,7 +81,7 @@ export default class DietChart extends React.Component {
                         <h3 className="h2"><small className="small">Protein  </small>{protein}<small className="small">/{this.state.goalProtein}g</small></h3>
                     </Col>
                     <Col md={12}>
-                        <Progress animated color= "info" value={protein} max={this.state.goalProtein}></Progress>
+                        <Progress animated color= "info" value={protein} max={this.state.goalProtein}>{protein} of {this.state.goalProtein}</Progress>
                     </Col>
                 </Row>
                 <Row>
@@ -89,7 +89,7 @@ export default class DietChart extends React.Component {
                         <h3 className="h2"><small className="small">Fat  </small>{fat}<small className="small">/{this.state.goalFat}g</small></h3>
                     </Col>
                     <Col md={12}>
-                        <Progress animated color= "warning" value={fat} max={this.state.goalFat}></Progress>
+                        <Progress animated color= "warning" value={fat} max={this.state.goalFat}>{fat} of {this.state.goalFat}</Progress>
                     </Col>
                 </Row>
             </React.Fragment>

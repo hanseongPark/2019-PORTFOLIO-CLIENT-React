@@ -13,7 +13,7 @@ export default class WorkoutList extends React.Component {
     }
     
     componentDidUpdate(prevProps){
-      if(this.props.userInfo!=prevProps.userInfo){
+      if(this.props.userInfo!==prevProps.userInfo){
           axios.post('/user/workout/target', {
             target: this.state.target,
             date: this.props.date
@@ -84,11 +84,10 @@ export default class WorkoutList extends React.Component {
                     <Table>
                     <thead>
                         <tr>
-                          <th>운동 이름</th>
-                          <th>무게</th>
-                          <th>세트 수</th>
-                          <th>반복 수</th>
-                          <th>삭제</th>
+                        <th>무게</th>
+                        <th>세트 수</th>
+                        <th>반복 수</th>
+                        <th>삭제</th>
                         </tr>
                     </thead>
                     {list}

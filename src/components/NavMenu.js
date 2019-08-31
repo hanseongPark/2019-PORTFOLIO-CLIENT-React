@@ -1,5 +1,6 @@
 import React from 'react';
 import {Navbar,NavbarBrand, Nav, NavLink, NavItem,Collapse,NavbarToggler, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle, Media} from 'reactstrap';
+import logo from '../img/logo.png'
 import kakaoButton from '../img/kakaoButton.png'
 import naverButton from '../img/naverButton.PNG'
 import testerButton from '../img/testerButton.png'
@@ -60,9 +61,7 @@ export default class NavMenu extends React.Component {
             <div>
                 <Navbar color="dark" dark expand="lg" fixed="top">
                     <NavbarBrand href="/">
-                    <div className="logo">
-                        Health Scheduler
-                    </div>
+                        <img src={logo} height="50px"/>
                     </NavbarBrand>
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={this.state.isOpen} navbar>
