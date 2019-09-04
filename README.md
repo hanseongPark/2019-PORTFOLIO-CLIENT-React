@@ -48,4 +48,4 @@ npm run start
 
 > 박한성 – hsung90123@naver.com
 
-[https://github.com/hanseongPark/2019-PORTFOLIO-SERVER-node-MySQL](https://github.com/hanseongPark/2019-PORTFOLIO-SERVER-node-MySQL)
+[https://github.com/hanseongPark/2019-PORTFOLIO-CLIENT-React](https://github.com/hanseongPark/2019-PORTFOLIO-CLIENT-React)
