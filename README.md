@@ -1,68 +1,51 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 프로젝트명 [Health Scheduler]
+> 아름다운 몸을 가꾸기 위하여 개인의 식단, 영양소, 운동 등의 정보를 관리할 수 있는 웹 어플리케이션입니다.
 
-## Available Scripts
+<img width="960" alt="mainPage" src="https://user-images.githubusercontent.com/54668871/64224247-ca7b9080-cf11-11e9-9937-342484afc4a0.png">
 
-In the project directory, you can run:
+> http://13.125.218.219/
 
-### `npm start`
+>현재 네이버 아이디로 로그인은 검수가 완료되지 않아 개발 상태입니다. 카카오 로그인은 정상적으로 이용할 수 있습니다. 테스터 로그인을 사용할 경우 미리 저장된 데이터를 사용하며 좀 더 수월한 웹사이트 기능을 사용할 수 있습니다.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 제작 동기
+> 현대에서 데이터 관리의 중요성은 경영, 인사, 스포츠, 심지어 게임에서까지 그 중요성이 입증되었습니다. 아름다운 몸매를 원하는 사람들에게도 이는 예외가 아닙니다. 다양한 웹사이트에서 영양소, 식단관리를 할 수 있지만, 정작 가장 중요한 운동 볼륨, 계획 관리 사이트는 없었습니다. 운동 관리를 포함한 다목적 스케쥴러를 만드는 것이 이 프로젝트의 제작 동기입니다.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## 개발 tool
+> react.js react-router, axios, bootstrap, reactstrap, react-chart2-js, react-calendar..
 
-### `npm test`
+## 설치 방법
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> Git 저장소의 소스코드를 복제한 후 의존 모듈을 설치합니다.
 
-### `npm run build`
+```sh
+npm i
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```sh
+npm run build
+```
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+> 배포하기 위해서는 build 명령어를 사용합니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+npm run start
+```
 
-### `npm run eject`
+> 개발 환경 실행 후 http://localhost:3000 로 접속합니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 사용 예제
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![detailPage](https://user-images.githubusercontent.com/54668871/64224258-d7987f80-cf11-11e9-9ab8-0d0007091aed.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+> 본인의 나이, 체중, 키 등 다양한 정보를 분석하여 사용자의 목표에 맞는 하루 칼로리와 영양성분을 계산할 수 있습니다.
 
-## Learn More
+> 이후 산출된 영양성분을 바탕으로 식단관리를 하며 하루 달성치를 시각적으로 파악할 수 있습니다.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+> 사용자의 운동 정보를 입력하여 시간에 따른 퍼포먼스의 증감과 운동 총 볼륨의 변화를 시각적으로 확인할 수 있습니다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 정보
 
-### Code Splitting
+> 박한성 – hsung90123@naver.com
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[https://github.com/hanseongPark/2019-PORTFOLIO-CLIENT-React](https://github.com/hanseongPark/2019-PORTFOLIO-CLIENT-React)
