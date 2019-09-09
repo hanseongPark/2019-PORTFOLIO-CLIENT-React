@@ -8,6 +8,9 @@ import Workout from '../img/Workout.jpg'
 import Diet from '../img/Diet.png'
 import LoginAlert from '../components/LoginAlert'
 
+//Home.js 페이지는 웹 어플리케이션의 메인화면 컨테이너 입니다. 메인화면의 캐러셀과
+//설명 부분의 Get Started 버튼을 통해 각 메뉴 페이지로 이동하는 기능을 가집니다.
+//visible의 상태는 로그인 경고창을 보여주거나 숨겨줍니다.
 class Home extends React.Component{
     constructor(props){
         super(props)
@@ -16,10 +19,16 @@ class Home extends React.Component{
         }
     }
 
+    //onDismiss 함수는 로그인 경고창의 close 버튼을 누를 시, this.state.visible의 상태를 false 
+    //로 만들어 창이 닫히도록 해줍니다.
     onDismiss = () => {
         this.setState({ visible: false });
     };
     
+    //toLink는 NavMenu의 각 링크이동과 동일한 메커니즘을 가집니다. 메인 페이지의 상세 설명 구간의
+    //Get Started 버튼을 누를 시 axios를 통해 사용자가 로그인 상태인지를 판별합니다. 이후 사용자가
+    //로그인 상태라면 화면을 각 페이지로 이동시키고, 로그인 상태가 아니라면 로그인 경고창의 상태를 
+    //true 로 만들며 경고창을 띄웁니다.
     toLink = (e) =>{
         e.preventDefault();
         const link = e.target.href
@@ -67,4 +76,7 @@ class Home extends React.Component{
             )
         }
     }
+
+    //Home 화면 역시 this.props.history에 접근하여 페이지를 이동시킬 수 있어야하므로
+    //withRouter의 인자로 export 하였습니다.
 export default withRouter(Home)
