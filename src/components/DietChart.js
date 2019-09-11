@@ -6,7 +6,6 @@ export default class DietChart extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            visible: true,
             goalCalorie: '',
             goalCarb:'',
             goalProtein : '',
@@ -23,11 +22,13 @@ export default class DietChart extends React.Component {
                     goalCarb: res.data.carb,
                     goalProtein : res.data.protein,
                     goalFat: res.data.fat,
-                    visible: true
                 })
             }else{
                 this.setState({
-                    visible: false
+                    goalCalorie: 0,
+                    goalCarb: 0,
+                    goalProtein : 0,
+                    goalFat: 0,
                 })
             }
         })

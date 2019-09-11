@@ -1,6 +1,5 @@
 import React from 'react';
-import { Modal, ModalHeader, ModalBody, Col, Row, Button, Table } from 'reactstrap';
-import axios from 'axios'
+import { Modal, ModalHeader, ModalBody, Col, Button, Table, Badge, ListGroup, ListGroupItem } from 'reactstrap';
 
 export default class DietList extends React.Component {
     constructor(props){
@@ -8,21 +7,6 @@ export default class DietList extends React.Component {
         this.state = {
             visible: false,
             time: '',
-            data: []
-        }
-    }
-
-    componentDidUpdate(prevProps){
-        if(this.props.userInfo!==prevProps.userInfo){
-            axios.post('/user/dietmanage/time', {
-                time: this.state.time,
-                date: this.props.date
-            })
-            .then((res)=>{
-                this.setState({
-                    data: res.data
-                })
-            })
         }
     }
 
@@ -33,29 +17,25 @@ export default class DietList extends React.Component {
     }
 
     delete=(id, time)=>{
-        this.setState({
-            data:[]
-        })
         this.props.onDelete(id, time)
     }
 
     callDietData = (time) =>{
-        axios.post('/user/dietmanage/time', {
-        time: time,
-        date: this.props.date
-
-    })
-    .then((res)=>{
         this.setState({
             time: time,
             visible: true,
-            data: res.data
         })
-    })
-  }
+    }
+
+    sumCalorie = (arr, type) => {
+       return arr.filter(e=> e.time===type).reduce((total, obj) => {
+          return total + obj["calorie"];
+        }, 0);
+    }
 
   render() {
-    const {data} = this.state
+    const userInfo = this.props.userInfo
+    const data = userInfo.filter(e => e.time===this.state.time);
     const list = data.map((info)=>
         <tbody key={info.id}>
             <td>{info.food}</td>
@@ -69,15 +49,45 @@ export default class DietList extends React.Component {
     )
     return (
         <React.Fragment>
-            <Col><h3 className="text-muted text-center">식단 리스트</h3></Col>
-            <Row>
-                <Col lg={4} md={6} xs={6} onClick={()=>this.callDietData("아침")}><p className="time text-muted h4">아침</p></Col>
-                <Col lg={4} md={6} xs={6} onClick={()=>this.callDietData("오전 간식")}><p className="time text-muted h4">오전 간식</p></Col>
-                <Col lg={4} md={6} xs={6} onClick={()=>this.callDietData("점심")}><p className="time text-muted h4">점심</p></Col>
-                <Col lg={4} md={6} xs={6} onClick={()=>this.callDietData("오후 간식")}><p className="time text-muted h4">오후 간식</p></Col>
-                <Col lg={4} md={6} xs={6} onClick={()=>this.callDietData("저녁")}><p className="time text-muted h4">저녁</p></Col>
-                <Col lg={4} md={6} xs={6} onClick={()=>this.callDietData("야식")}><p className="time text-muted h4">야식</p></Col>
-            </Row>
+            <Col><h2 className="text-center">식단 리스트</h2></Col>
+            <ListGroup>
+                <ListGroupItem tag="button" onClick={()=>this.callDietData("아침")} action>
+                    {this.sumCalorie(userInfo, "아침")===0
+                        ?<p className="time text-muted h2">아침</p>
+                        :<p className="time text-muted h2">아침<Badge color="primary">{this.sumCalorie(userInfo, "아침")}kcal</Badge></p>
+                    }
+                </ListGroupItem>
+                <ListGroupItem tag="button" onClick={()=>this.callDietData("오전 간식")} action>
+                    {this.sumCalorie(userInfo, "오전 간식")===0
+                    ?(<p className="time text-muted h2">오전 간식</p>)
+                    :(<p className="time text-muted h2">오전 간식<Badge color="primary">{this.sumCalorie(userInfo, "오전 간식")}kcal</Badge></p>)
+                    }
+                </ListGroupItem>
+                <ListGroupItem tag="button" onClick={()=>this.callDietData("점심")} action>
+                    {this.sumCalorie(userInfo, "점심")===0
+                    ?(<p className="time text-muted h2">점심</p>)
+                    :(<p className="time text-muted h2">점심<Badge color="primary">{this.sumCalorie(userInfo, "점심")}kcal</Badge></p>)
+                    }
+                </ListGroupItem>
+                <ListGroupItem tag="button" onClick={()=>this.callDietData("오후 간식")} action>
+                    {this.sumCalorie(userInfo, "오후 간식")===0
+                    ?(<p className="time text-muted h2">오후 간식</p>)
+                    :(<p className="time text-muted h2">오후 간식<Badge color="primary">{this.sumCalorie(userInfo, "오후 간식")}kcal</Badge></p>)
+                    }
+                </ListGroupItem>
+                <ListGroupItem tag="button" onClick={()=>this.callDietData("저녁")} action>
+                    {this.sumCalorie(userInfo, "저녁")===0
+                    ?(<p className="time text-muted h2">저녁</p>)
+                    :(<p className="time text-muted h2">저녁<Badge color="primary">{this.sumCalorie(userInfo, "저녁")}kcal</Badge></p>)
+                    }
+                </ListGroupItem>
+                <ListGroupItem tag="button" onClick={()=>this.callDietData("야식")} action>
+                    {this.sumCalorie(userInfo, "야식")===0
+                    ?(<p className="time text-muted h2">야식</p>)
+                    :(<p className="time text-muted h2">야식<Badge color="primary">{this.sumCalorie(userInfo, "야식")}kcal</Badge></p>)
+                    }
+                </ListGroupItem>
+            </ListGroup>
             <Modal isOpen={this.state.visible} toggle={this.toggle} size="lg">
                 <ModalHeader className="text-muted" toggle={this.toggle}><h4>{this.props.date}<small>{this.state.time}</small></h4></ModalHeader>
                 <ModalBody className="text-muted text-center">

@@ -1,28 +1,12 @@
 import React from 'react';
-import { Modal, ModalHeader, ModalBody, Col, Row, Button, Table } from 'reactstrap';
-import axios from 'axios';
+import { Modal, ModalHeader, ModalBody, Col, Button, Table, ListGroup,ListGroupItem,Badge } from 'reactstrap';
 
 export default class WorkoutList extends React.Component {
     constructor(props){
       super(props)
       this.state = {
           visible: false,
-          target: '',
-          data: []
-      }
-    }
-    
-    componentDidUpdate(prevProps){
-      if(this.props.userInfo!==prevProps.userInfo){
-          axios.post('/user/workout/target', {
-            target: this.state.target,
-            date: this.props.date
-          })
-          .then((res)=>{
-              this.setState({
-                  data: res.data
-              })
-          })
+          target: ''
       }
     }
 
@@ -32,33 +16,24 @@ export default class WorkoutList extends React.Component {
         }));
     }
 
-    delete=(id, target)=>{
-      this.setState({
-        data:[]
-      })
-      this.props.onDelete(id, target)
-    }
-
-    callDietData = (target) =>{
-        axios.post('/user/workout/target', {
-        target: target,
-        date: this.props.date
-        })
-        .then((res)=>{
+    callWorkoutData = (target) =>{
             this.setState({
                 target: target,
-                visible: true,
-                data: res.data
+                visible: true
             })
-        })
       }
 
     delete=(id, target)=>{
       this.props.onDelete(id, target)
     }
 
+    checkWorkList = (arr, type) => {
+        return arr.filter(e=> e.target===type).length
+    }
+
     render() {
-          const {data} = this.state
+          const userInfo = this.props.userInfo
+          const data = userInfo.filter(e => e.target===this.state.target);
           const list = data.map((info)=>
               <tbody key={info.id}>
                   <td>{info.workname}</td>
@@ -70,20 +45,46 @@ export default class WorkoutList extends React.Component {
           )
       return (
         <React.Fragment>
-            <Col><h3 className="text-muted text-center">운동 리스트</h3></Col>
-            <Row>
-                <Col lg={4} md={6} xs={6} onClick={()=>this.callDietData("가슴")}><p className="time text-muted h4">가슴</p></Col>
-                <Col lg={4} md={6} xs={6} onClick={()=>this.callDietData("등")}><p className="time text-muted h4">등</p></Col>
-                <Col lg={4} md={12} xs={6} onClick={()=>this.callDietData("어깨")}><p className="time text-muted h4">어깨</p></Col>
-                <Col lg={{size: 4, offset: 2}} md={{size: 4, offset: 2}} xs={6} onClick={()=>this.callDietData("하체")}><p className="time text-muted h4">하체</p></Col>
-                <Col lg={4} md={4} xs={6} onClick={()=>this.callDietData("코어")}><p className="time text-muted h4">코어</p></Col>
-            </Row>
+            <Col><h2 className="text-center">운동 리스트</h2></Col>
+            <ListGroup>
+                <ListGroupItem tag="button" onClick={()=>this.callWorkoutData("가슴")} action>
+                    {this.checkWorkList(userInfo, "가슴")===0
+                        ?<p className="time text-muted h2">가슴</p>
+                        :<p className="time text-muted h2">가슴<Badge color="primary">{this.checkWorkList(userInfo, "가슴")}종목 완수</Badge></p>
+                    }
+                </ListGroupItem>
+                <ListGroupItem tag="button" onClick={()=>this.callWorkoutData("등")} action>
+                    {this.checkWorkList(userInfo, "등")===0
+                    ?(<p className="time text-muted h2">등</p>)
+                    :(<p className="time text-muted h2">등<Badge color="primary">{this.checkWorkList(userInfo, "등")}종목 완수</Badge></p>)
+                    }
+                </ListGroupItem>
+                <ListGroupItem tag="button" onClick={()=>this.callWorkoutData("어깨")} action>
+                    {this.checkWorkList(userInfo, "어깨")===0
+                    ?(<p className="time text-muted h2">어깨</p>)
+                    :(<p className="time text-muted h2">어깨<Badge color="primary">{this.checkWorkList(userInfo, "어깨")}종목 완수</Badge></p>)
+                    }
+                </ListGroupItem>
+                <ListGroupItem tag="button" onClick={()=>this.callWorkoutData("하체")} action>
+                    {this.checkWorkList(userInfo, "하체")===0
+                    ?(<p className="time text-muted h2">하체</p>)
+                    :(<p className="time text-muted h2">하체<Badge color="primary">{this.checkWorkList(userInfo, "하체")}종목 완수</Badge></p>)
+                    }
+                </ListGroupItem>
+                <ListGroupItem tag="button" onClick={()=>this.callWorkoutData("코어")} action>
+                    {this.checkWorkList(userInfo, "코어")===0
+                    ?(<p className="time text-muted h2">코어</p>)
+                    :(<p className="time text-muted h2">코어<Badge color="primary">{this.checkWorkList(userInfo, "코어")}종목 완수</Badge></p>)
+                    }
+                </ListGroupItem>
+            </ListGroup>
             <Modal isOpen={this.state.visible} toggle={this.toggle} size="lg">
                 <ModalHeader className="text-muted" toggle={this.toggle}><h4>{this.props.date}<small>{this.state.time}</small></h4></ModalHeader>
                 <ModalBody className="text-muted text-center">
                     <Table>
                     <thead>
                         <tr>
+                        <th>운동이름</th>
                         <th>무게</th>
                         <th>세트 수</th>
                         <th>반복 수</th>
