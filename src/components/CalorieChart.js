@@ -3,8 +3,10 @@ import { Doughnut } from 'react-chartjs-2'
 import {ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText} from 'reactstrap';
 
 
-export default class Calculrater extends React.Component{
-    
+export default class CalorieChart extends React.Component{
+    //CalorieChart.js는 칼로리 도넛 그래프를 사용자에게 보여주는 컴포넌트입니다.
+    //data는 칼로리 그래프에 데이터를 넘겨줍니다. dataset의 data 항목에 사용자의
+    //영양성분 정보를 상위 컴포넌트로부터 받아 렌더링합니다.
     render(){
         const data = {
             labels: [
@@ -26,6 +28,7 @@ export default class Calculrater extends React.Component{
         }
         return(
             <React.Fragment>
+                {/* 속성값의 visible이 true 면 그래프를 보여주고, false 라면 그래프를 숨깁니다. */}
                 {this.props.visible===true
                 ?(<ListGroup>
                         <ListGroupItem>

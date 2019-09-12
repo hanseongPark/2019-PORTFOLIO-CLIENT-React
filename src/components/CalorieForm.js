@@ -1,7 +1,10 @@
 import React from 'react';
 import {Col, Button, Form, FormGroup, Input, Label, InputGroup, InputGroupAddon, CustomInput, Card, CardBody, CardFooter } from 'reactstrap'
 
-export default class Calculrater extends React.Component{
+//CalorieForm 은 칼로리 계산기의 폼 양식을 렌더링합니다.
+//자신의 상태값으로 사용자의 정보를 담고 있으며 이를 상위 컴포넌트에
+//전달합니다.
+export default class CalorieForm extends React.Component{
     constructor(props){
         super(props)       
         this.state ={
@@ -14,37 +17,54 @@ export default class Calculrater extends React.Component{
         }
     }
 
+    //상위 컴포넌트의 props 값이 변할 시 변경사항을 바로 자신의
+    //상태값으로 다시 저장하게 됩니다.
     componentDidUpdate(prevProps){
         if(this.props!==prevProps){
             this.setState(this.props)
         }
     }
 
+    //나이 입력창의 값을 상태값으로 저장하는 메소드입니다. 이때 값이 변하면
+    //상위 컴포넌트의 valueChange를 호출하여 calorieChart를 숨깁니다.
     handleAgeChange = (event) => {
         this.props.onValueChange()
         this.setState({age: event.target.value})
     }
+    //몸무게 입력창의 값을 상태값으로 저장하는 메소드입니다. 이때 값이 변하면
+    //상위 컴포넌트의 valueChange를 호출하여 calorieChart를 숨깁니다.
     handleWeightChange = (event) => {
         this.props.onValueChange()
         this.setState({weight: event.target.value})
     }
+    //키 입력창의 값을 상태값으로 저장하는 메소드입니다. 이때 값이 변하면
+    //상위 컴포넌트의 valueChange를 호출하여 calorieChart를 숨깁니다.
     handleHeightChange = (event) => {
         this.props.onValueChange()
         this.setState({height: event.target.value})
     }
+    //성별 입력창의 값을 상태값으로 저장하는 메소드입니다. 이때 값이 변하면
+    //상위 컴포넌트의 valueChange를 호출하여 calorieChart를 숨깁니다.
     handleGenderChange = (event) => {
         this.props.onValueChange()
         this.setState({gender: event.currentTarget.value})
     }
+    //활동량 입력창의 값을 상태값으로 저장하는 메소드입니다. 이때 값이 변하면
+    //상위 컴포넌트의 valueChange를 호출하여 calorieChart를 숨깁니다.
     handleActivityChange = (event) => {
         this.props.onValueChange()
         this.setState({activity: event.target.value})
     }
+    //목표 입력창의 값을 상태값으로 저장하는 메소드입니다. 이때 값이 변하면
+    //상위 컴포넌트의 valueChange를 호출하여 calorieChart를 숨깁니다.
     handleGoalChange = (event) => {
         this.props.onValueChange()
         this.setState({goal: event.currentTarget.value})
     }
 
+    //calculrate 버튼을 누를 시 호출되는 메소드입니다. e.preventDefault 를 통해
+    //submit 시 페이지가 새로고침되는 것을 방지합니다. 이후 사용자의 상태값을 담아 
+    //상위 컴포넌트의 onCreate 메소드를 호출합니다.
     calculrate = (e) =>{
         e.preventDefault();
         this.props.onCreate(this.state)
