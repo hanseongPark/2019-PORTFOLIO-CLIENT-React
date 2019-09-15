@@ -1,6 +1,9 @@
 import React from 'react';
 import {Card, CardHeader, CardBody, CardFooter, Input, Label, Form, FormGroup, Button, InputGroup, InputGroupAddon, Col} from 'reactstrap'
 
+//DietForm은 사용자가 자신의 식단을 입력할 때 쓰이는 컴포넌트입니다.
+//상태값으로 음식 이름, 시간, 음식의 양, 영양성분을 가지며 이를 submit을
+//통해 상위컴포넌트로 보냅니다.
 export default class DietForm extends React.Component{
     constructor(props){
         super(props)
@@ -15,27 +18,45 @@ export default class DietForm extends React.Component{
         }
     }
     
+    //handleTimeChange 함수는 사용자가 음식의 섭취 시간을 변경할 때 호출되어
+    //변경사항을 상태값으로 저장합니다.
     handleTimeChange=(e)=>{
         this.setState({time: e.target.value})
     }
+    //handleFoodChange 함수는 사용자가 음식의 이름을 변경할 때 호출되어
+    //변경사항을 상태값으로 저장합니다.
     handleFoodChange=(e)=>{
         this.setState({food: e.target.value})
     }
+    //handleGramChange 함수는 사용자가 음식의 양을 변경할 때 호출되어
+    //변경사항을 상태값으로 저장합니다.
     handleGramChange=(e)=>{
         this.setState({gram: e.target.value})
     }
+    //handleCalorieChange 함수는 사용자가 음식의 칼로리를 변경할 때 호출되어
+    //변경사항을 상태값으로 저장합니다.
     handleCalorieChange=(e)=>{
         this.setState({calorie: e.target.value})
     }
+    //handleCarbChange 함수는 사용자가 탄수화물 양을 변경할 때 호출되어
+    //변경사항을 상태값으로 저장합니다.
     handleCarbChange=(e)=>{
         this.setState({carb: e.target.value})
     }
+    //handleProteinChange 함수는 사용자가 음식의 단백질량을 변경할 때 호출되어
+    //변경사항을 상태값으로 저장합니다.
     handleProteinChange=(e)=>{
         this.setState({protein: e.target.value})
     }
+    //handleFatChange 함수는 사용자가 음식의 지방량을 변경할 때 호출되어
+    //변경사항을 상태값으로 저장합니다.
     handleFatChange=(e)=>{
         this.setState({fat: e.target.value})
     }
+
+    //handleSubmit은 사용자가 음식을 추가할 때 호출됩니다. event.preventDefault를 통해
+    //페이지가 새로 고침되는 것을 방지한 후 상위 컴포넌트의 onCreate 함수에 상태값을 넣어
+    //전송합니다. 이후에는 상태값을 다시 초기화합니다.
     handleSubmit=(e)=>{
         e.preventDefault();
         this.props.onCreate(this.state)

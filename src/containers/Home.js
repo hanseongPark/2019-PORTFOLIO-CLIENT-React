@@ -53,7 +53,7 @@ class Home extends React.Component{
                     <Row>
                         <Col className="text-center" md={4}>
                             <img className="img-circle" src={Calorie} alt="Generic placeholder image" width="140" height="140"/>
-                            <h4>Calorie Calculrater</h4>
+                            <h4>Calorie Calculrator</h4>
                             <p className="intro text-muted">모든 관리의 시작은 현재의 상태를 파악하고, 그에 알맞은 목표를 설정하는 것으로 시작한다. 이 웹사이트에서는 칼로리 계산기를 통해 사용자의 상태를 파악해 정확한 하루 칼로리와 영양성분을 제공한다.</p>
                             <Button outline color="secondary" href="/calorie" onClick={this.toLink}>Get Started</Button>
                         </Col>

@@ -96,7 +96,7 @@ export default class NavMenu extends React.Component {
                             <NavLink href="/" onClick={this.toIntro}>Home</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/calorie" onClick={this.toLink}>Calorie Calculater</NavLink>
+                            <NavLink href="/calorie" onClick={this.toLink}>Calorie Calculator</NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink href="/dietmanage" onClick={this.toLink}>Diet Management</NavLink>
