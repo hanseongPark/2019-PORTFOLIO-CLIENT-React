@@ -18,7 +18,7 @@ export default class WorkoutGraph extends React.Component {
         axios.post('/user/workout/chartdata', {date: this.props.date, target: this.state.target})
         .then((res)=>{
             if(res.data!==null){
-                const data=res.data
+                const data=res.data.reverse()
                 this.setState({
                     data: data
                 })
@@ -35,7 +35,7 @@ export default class WorkoutGraph extends React.Component {
             axios.post('/user/workout/chartdata', {date: prevPops.date, target: this.state.target})
             .then((res)=>{
                 if(res.data!==null){
-                    const data=res.data
+                    const data=res.data.reverse()
                     this.setState({
                         data: data
                     })
@@ -59,7 +59,7 @@ export default class WorkoutGraph extends React.Component {
         axios.post('/user/workout/chartdata', {date: this.props.date, target: e.target.value})
             .then((res)=>{
                 if(res.data!==null){
-                    const data=res.data
+                    const data=res.data.reverse()
                     this.setState({
                         data: data
                     })
